@@ -369,6 +369,9 @@ NS_ASSUME_NONNULL_BEGIN
         return sendResult( @{ @"error" : @"Invalid url"});
     }
     
+    // https://githubmemory.com/repo/oracle/cordova-plugin-wkwebview-file-xhr/issues/79
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; // PATCH
+
     NSURL *url = [NSURL URLWithString:urlString];
     
     if (![url.scheme.lowercaseString isEqualToString:@"http"] && ![url.scheme.lowercaseString isEqualToString:@"https"]) {
